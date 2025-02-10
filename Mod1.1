@@ -1,0 +1,21 @@
+//Strong Password
+int minimumNumber(int n, char* password) {
+    int needsDigit = 1, needsLower = 1, needsUpper = 1, needsSpecial = 1;
+    int count = 0;
+
+    // Check each character in the password
+    while (*password != '\0') {
+        if (isdigit(*password)) {
+            needsDigit = 0;
+        } else if (islower(*password)) {
+            needsLower = 0;
+        } else if (isupper(*password)) {
+            needsUpper = 0;
+        } else if (ispunct(*password)) {
+            needsSpecial = 0;
+        }
+        password++;
+    }
+
+
+
