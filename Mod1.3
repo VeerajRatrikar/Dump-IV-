@@ -1,0 +1,19 @@
+//Power Sum
+int powerSum(int X, int N) {
+    static int num = 1; 
+
+    if (X == 0) {
+        return 1;
+    }
+    if (X < 0) {
+        return 0;
+    }
+
+    int count = 0;
+    for (int i = num; pow(i, N) <= X; i++) {
+        num = i + 1;
+        count += powerSum(X - pow(i, N), N);
+    }
+
+    return count;
+}
