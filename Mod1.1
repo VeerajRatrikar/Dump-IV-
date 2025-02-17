@@ -1,21 +1,45 @@
 //Strong Password
 int minimumNumber(int n, char* password) {
-    int needsDigit = 1, needsLower = 1, needsUpper = 1, needsSpecial = 1;
-    int count = 0;
+    bool has_digit = false;
+    bool has_upper = false;
+    bool has_lower = false;
+    bool has_special = false;
+    char special_characters[] = "!@#$%^&*()-+";
 
-    // Check each character in the password
-    while (*password != '\0') {
-        if (isdigit(*password)) {
-            needsDigit = 0;
-        } else if (islower(*password)) {
-            needsLower = 0;
-        } else if (isupper(*password)) {
-            needsUpper = 0;
-        } else if (ispunct(*password)) {
-            needsSpecial = 0;
+    // Check for the existing conditions in the password
+    for (int i = 0; i < n; i++) {
+        if (isdigit(password[i])) {
+            has_digit = true;
+        } else if (isupper(password[i])) {
+            has_upper = true;
+        } else if (islower(password[i])) {
+            has_lower = true;
+        } else if (strchr(special_characters, password[i])) {
+            has_special = true;
         }
-        password++;
     }
+
+    // Count the number of missing criteria
+    int missing_count = 0;
+    if (!has_digit) {
+        missing_count++;
+    }
+    if (!has_upper) {
+        missing_count++;
+    }
+    if (!has_lower) {
+        missing_count++;
+    }
+    if (!has_special) {
+        missing_count++;
+    }
+
+    // Ensure the password is at least 6 characters long
+    int length_to_add = 6 - n;
+
+    // Return the maximum of the missing conditions and the length required to reach 6 characters
+    return (missing_count > length_to_add) ? missing_count : length_to_add;
+}
 
 
 
