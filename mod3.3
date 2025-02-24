@@ -1,0 +1,31 @@
+//Insert a node at a given position
+SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* llist, int data, int position) {
+    SinglyLinkedListNode* newNode = malloc(sizeof(SinglyLinkedListNode));
+    if (newNode==NULL) {
+        return NULL;
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (position == 0) {
+        newNode->next = llist;
+        return newNode;
+    }
+
+    SinglyLinkedListNode* cur = llist;
+    int index = 0;
+
+    while (index < position - 1 && cur->next != NULL) {
+        cur = cur->next;
+        index++;
+    }
+
+    if (index != position - 1) {
+        free(newNode);
+        return llist;
+    }
+    newNode->next = cur->next;
+    cur->next = newNode;
+
+    return llist;
+}
