@@ -1,0 +1,21 @@
+//Insert at the tail
+SinglyLinkedListNode* insertNodeAtTail(SinglyLinkedListNode* head, int data) {
+    SinglyLinkedListNode* newNode = malloc(sizeof(SinglyLinkedListNode));
+    if (newNode == NULL) {
+        return NULL;
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (head == NULL) {
+        head = newNode;
+        return head;
+    }
+
+    SinglyLinkedListNode* cur = head;
+    while (cur->next != NULL) {
+        cur = cur->next;
+    }
+    cur->next = newNode;
+    return head;
+}
