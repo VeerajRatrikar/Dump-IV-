@@ -1,0 +1,19 @@
+//BST Insertion
+struct node* insert(struct node* root, int data) {
+    if (root == NULL) {
+        struct node* Node = (struct node*)malloc(sizeof(struct node));
+        Node->data = data;
+        Node->left = NULL;
+        Node->right = NULL;
+        return Node;
+    }
+
+    if (data < root->data) {
+        root->left = insert(root->left, data);
+    } 
+    else { 
+        root->right = insert(root->right, data); 
+    }
+
+    return root;
+}
